@@ -1,0 +1,14 @@
+CREATE DATABASE IF NOT EXISTS bancobr
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+USE bancobr;
+
+CREATE TABLE IF NOT EXISTS clientes (
+  idclientes INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(100) NOT NULL,
+  cpf VARCHAR(11) NOT NULL,
+  saldo DECIMAL(15, 2) NOT NULL DEFAULT 0.00,
+  ativo TINYINT(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (idclientes),
+  UNIQUE KEY clientes_cpf_unique (cpf)
+);
