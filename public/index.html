@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banco BR | Clientes</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/script.js" defer></script>
+</head>
+<body>
+  <header class="topo">
+    <a class="marca" href="/" aria-label="Banco BR, início"><span class="logo">B</span> Banco BR</a>
+    <nav aria-label="Navegação principal">
+      <a href="/" aria-current="page">Clientes</a>
+      <a href="/saldo.html">Consultar saldo</a>
+    </nav>
+  </header>
+  <main>
+    <section class="introducao">
+      <p class="etiqueta">PAINEL DO BANCO</p>
+      <h1>Clientes e saldos</h1>
+      <p>Organize os cadastros e acompanhe os saldos em um só lugar.</p>
+    </section>
+    <section class="resumo" aria-label="Resumo dos clientes">
+      <article class="card"><p>Clientes cadastrados</p><strong id="total-clientes">—</strong></article>
+      <article class="card"><p>Clientes ativos</p><strong id="total-ativos">—</strong></article>
+      <article class="card destaque"><p>Saldo total dos clientes</p><strong id="saldo-total">—</strong></article>
+    </section>
+    <p id="mensagem" class="mensagem" role="status" aria-live="polite" hidden></p>
+    <div class="painel">
+      <section class="card cadastro" aria-labelledby="titulo-formulario">
+        <h2 id="titulo-formulario">Novo cliente</h2>
+        <p class="descricao">Preencha os dados para cadastrar.</p>
+        <form id="form-cliente">
+          <fieldset id="campos-cliente">
+            <label for="nome">Nome completo</label>
+            <input id="nome" name="nome" type="text" autocomplete="name" required placeholder="Ex.: Maria Silva">
+            <label for="cpf">CPF</label>
+            <input id="cpf" name="cpf" type="text" inputmode="numeric" maxlength="14" pattern="[0-9]{11}|[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" title="Digite 11 números ou use 000.000.000-00" required placeholder="000.000.000-00">
+            <label for="saldo">Saldo (R$)</label>
+            <input id="saldo" name="saldo" type="number" min="0" step="0.01" value="0" required>
+            <label for="ativo">Situação</label>
+            <select id="ativo" name="ativo"><option value="1">Ativo</option><option value="0">Inativo</option></select>
+            <div class="botoes-formulario">
+              <button type="submit" id="salvar">Cadastrar cliente</button>
+              <button type="button" id="cancelar" class="secundario" hidden>Cancelar edição</button>
+            </div>
+          </fieldset>
+        </form>
+      </section>
+      <section class="card lista" aria-labelledby="titulo-lista">
+        <div class="cabecalho-lista"><div><h2 id="titulo-lista">Lista de clientes</h2><p class="descricao">Consulte e atualize os cadastros.</p></div><button id="recarregar" class="secundario" type="button">Atualizar lista</button></div>
+        <div class="tabela-container">
+          <table>
+            <caption class="somente-leitor">Clientes cadastrados e seus saldos</caption>
+            <thead><tr><th scope="col">Nº</th><th scope="col">Cliente</th><th scope="col">Saldo</th><th scope="col">Situação</th><th scope="col">Ações</th></tr></thead>
+            <tbody id="lista-clientes"><tr><td colspan="5">Carregando clientes...</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer>Banco BR · Projeto de estudos</footer>
+</body>
+</html>

@@ -1,8 +1,10 @@
 const express = require('express')
+const path = require('path')
 const pool = require('../db/db.js')
 const app = express()
 
 app.use(express.json())
+app.use(express.static(path.join(__dirname, '../public')))
 
 
 function validarId(req, res, next) {
@@ -19,7 +21,7 @@ function validarCliente(req, res, next) {
   if (typeof nome !== 'string' || !nome.trim()) {
     return res.status(400).json({ message: 'Informe um nome valido.' })
   }
-  
+
   if (typeof cpf !== 'string' || !/^(\d{11}|\d{3}\.\d{3}\.\d{3}-\d{2})$/.test(cpf)) {
     return res.status(400).json({ message: 'Informe o CPF como texto com 11 digitos.' })
   }
@@ -47,7 +49,7 @@ function responderErroBanco(error, res) {
 }
 
 
-app.get(['/', '/clientes'], (req, res) => {
+app.get('/clientes', (req, res) => {
   pool.query('SELECT * FROM clientes', (error, result) => {
     if (error) return responderErroBanco(error, res)
     return res.status(200).json(result)

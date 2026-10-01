@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banco BR | Consultar saldo</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/saldo.js" defer></script>
+</head>
+<body>
+  <header class="topo">
+    <a class="marca" href="/" aria-label="Banco BR, início"><span class="logo">B</span> Banco BR</a>
+    <nav aria-label="Navegação principal"><a href="/">Clientes</a><a href="/saldo.html" aria-current="page">Consultar saldo</a></nav>
+  </header>
+  <main class="consulta">
+    <section class="introducao"><p class="etiqueta">ÁREA DO CLIENTE</p><h1>Consulte seu saldo</h1><p>Informe o número do seu cadastro para consultar.</p></section>
+    <section class="card">
+      <h2>Buscar cadastro</h2>
+      <form id="form-saldo">
+        <label for="cliente-id">Número do cliente</label>
+        <input id="cliente-id" name="cliente-id" type="number" min="1" max="9007199254740991" step="1" required placeholder="Ex.: 1">
+        <button type="submit" id="consultar">Consultar saldo</button>
+      </form>
+    </section>
+    <p id="mensagem-saldo" class="mensagem" role="status" aria-live="polite" hidden></p>
+    <section id="resultado-saldo" class="card resultado" aria-live="polite" hidden>
+      <p class="etiqueta">SALDO ATUAL</p><h2 id="cliente-nome"></h2><strong id="cliente-saldo" class="valor-saldo"></strong><p id="cliente-situacao"></p>
+    </section>
+  </main>
+  <footer>Banco BR · Projeto de estudos</footer>
+</body>
+</html>
