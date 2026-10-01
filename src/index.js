@@ -4,7 +4,7 @@ const app = express()
 
 app.use(express.json())
 
-// As validacoes e as rotas ficam neste arquivo para manter o projeto simples.
+
 function validarId(req, res, next) {
   const id = Number(req.params.id)
   if (!/^\d+$/.test(req.params.id) || !Number.isSafeInteger(id) || id <= 0) {
@@ -19,7 +19,7 @@ function validarCliente(req, res, next) {
   if (typeof nome !== 'string' || !nome.trim()) {
     return res.status(400).json({ message: 'Informe um nome valido.' })
   }
-  // Aceita CPF com 11 digitos ou no formato 000.000.000-00.
+  
   if (typeof cpf !== 'string' || !/^(\d{11}|\d{3}\.\d{3}\.\d{3}-\d{2})$/.test(cpf)) {
     return res.status(400).json({ message: 'Informe o CPF como texto com 11 digitos.' })
   }
@@ -46,7 +46,7 @@ function responderErroBanco(error, res) {
   return res.status(500).json({ message: 'Erro no servidor.' })
 }
 
-// Mantem a rota original e tambem permite listar em /clientes.
+
 app.get(['/', '/clientes'], (req, res) => {
   pool.query('SELECT * FROM clientes', (error, result) => {
     if (error) return responderErroBanco(error, res)
