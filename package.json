@@ -1,0 +1,21 @@
+{
+  "name": "crud-banco-nodejs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API CRUD de clientes com Node.js, Express e MySQL",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mysql2": "^3.24.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
